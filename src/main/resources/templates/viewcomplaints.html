@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Complaints</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #dc3545;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: center;
+            font-size: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #dc3545;
+            color: white;
+            font-size: 16px;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        td:last-child {
+            color: #6c757d;
+        }
+
+        .no-data {
+            text-align: center;
+            font-size: 16px;
+            color: #888;
+            margin-top: 40px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Complaints</h2>
+
+    <div th:if="${#lists.isEmpty(feedbackList)}" class="no-data">
+        You haven't submitted any complaints yet.
+    </div>
+
+    <table th:if="${!#lists.isEmpty(feedbackList)}">
+        <thead>
+            <tr>
+                <th>Message</th>
+                <th>Rating</th>
+                <th>Admin Reply</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="feedback : ${feedbackList}">
+                <td th:text="${feedback.message}"></td>
+                <td th:text="${feedback.rating}"></td>
+                <td th:text="${feedback.reply != null ? feedback.reply : 'No Reply Yet'}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="back-link">
+        <a href="/user/dashboard">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

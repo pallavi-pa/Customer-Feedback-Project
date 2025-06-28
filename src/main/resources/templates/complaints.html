@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Complaints</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #2c3e50, #4ca1af);
+            margin: 0;
+            padding: 30px;
+            color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #ffb3b3;
+        }
+
+        table {
+            width: 95%;
+            margin: 0 auto 40px;
+            border-collapse: collapse;
+            background: #fff;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 16px 14px;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f88b8b;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .reply-display {
+            background-color: #ffefef;
+            border-left: 5px solid #c0392b;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #8b0000;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 8px;
+            padding: 10px 18px;
+            background-color: #c0392b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a93226;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #34495e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #2c3e50;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .reply-form {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>📩 All Submitted Complaints</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Message</th>
+                <th>Admin Reply</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="feedback : ${feedbacks}">
+                <td th:text="${feedback.id}">1</td>
+                <td th:text="${feedback.username}">john</td>
+                <td th:text="${feedback.message}">Sample complaint</td>
+                <td>
+                    <div th:if="${feedback.reply != null}">
+                        <div class="reply-display" th:text="'Admin Reply: ' + ${feedback.reply}"></div>
+                    </div>
+                    <form class="reply-form" th:action="@{/admin/reply}" method="post">
+                        <input type="hidden" name="feedbackId" th:value="${feedback.id}" />
+                        <textarea name="reply" placeholder="Write your reply..." required></textarea>
+                        <button type="submit">Submit Reply</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="centered">
+        <a href="/admin/dashboard" class="back-button">← Back to Admin Dashboard</a>
+    </div>
+
+</body>
+</html>

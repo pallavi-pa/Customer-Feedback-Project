@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #2c3e50, #4ca1af);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #d0d0d0;
+      margin-bottom: 50px;
+    }
+
+    .dashboard {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #3a3f58;
+      border-radius: 15px;
+      padding: 30px;
+      width: 260px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .card .count {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #fff;
+      opacity: 0.8;
+    }
+
+    .card.red { background-color: #c0392b; }
+    .card.orange { background-color: #f39c12; }
+    .card.green { background-color: #27ae60; }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      color: white;
+    }
+
+    .card p {
+      margin: 10px 0 20px;
+      font-size: 14px;
+      color: #f0f0f0;
+    }
+
+    .card .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .card.red .button {
+      background-color: #e74c3c;
+    }
+
+    .card.orange .button {
+      background-color: #f1c40f;
+      color: black;
+    }
+
+    .card.green .button {
+      background-color: #2ecc71;
+    }
+
+    .section-title {
+      margin-top: 60px;
+      font-size: 24px;
+      color: #a0cfff;
+    }
+
+    .overview-section {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .overview-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .overview-box h4 {
+      margin-bottom: 10px;
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    .overview-box p {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .footer {
+      margin-top: 60px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome, Admin!</h1>
+  <p>Manage your platform with ease. Monitor feedback, track insights, and maintain excellence.</p>
+
+  <div class="dashboard">
+    <div class="card red">
+      <div class="count">23<br><span style="font-size:12px;">pending</span></div>
+      <h3>View Complaints</h3>
+      <p>Review and manage customer complaints</p>
+      <a href="/admin/complaints" class="button">Access Dashboard</a>
+    </div>
+
+    <div class="card orange">
+      <div class="count">15<br><span style="font-size:12px;">pending</span></div>
+      <h3>View Suggestions</h3>
+      <p>Explore improvement suggestions</p>
+      <a href="/admin/suggestions" class="button">Access Dashboard</a>
+    </div>
+
+    <div class="card green">
+      <div class="count">42<br><span style="font-size:12px;">pending</span></div>
+      <h3>View Praising</h3>
+      <p>Read positive feedback and praise</p>
+      <a href="/admin/praising" class="button">Access Dashboard</a>
+    </div>
+  </div>
+
+  <h2 class="section-title">📊 Platform Overview</h2>
+
+  <div class="overview-section">
+    <div class="overview-box">
+      <h4>Total Feedback</h4>
+      <p>80</p>
+    </div>
+
+    <div class="overview-box">
+      <h4>Total Users</h4>
+      <p>25</p>
+    </div>
+
+    <div class="overview-box">
+      <h4>Avg. Rating</h4>
+      <p>4.3 ⭐</p>
+    </div>
+
+    <div class="overview-box">
+      <h4>Replied</h4>
+      <p>50</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Feedback Management System. All rights reserved.
+  </div>
+
+</body>
+</html>

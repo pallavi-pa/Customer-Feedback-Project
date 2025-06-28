@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Feedback</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f4f7, #e0eafc);
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            width: 50%;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 12px;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Your Feedback</h2>
+
+    <form th:action="@{/user/feedback/update}" method="post">
+        <!-- Hidden field for feedback ID -->
+        <input type="hidden" name="id" th:value="${feedback.id}" />
+
+        <!-- Feedback Message -->
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" th:value="${feedback.message}" required />
+
+        <!-- Feedback Type Dropdown -->
+        <label for="feedbackType">Feedback Type:</label>
+        <select id="feedbackType" name="feedbackType" required>
+            <option value="Complaint" th:selected="${feedback.feedbackType == 'Complaint'}">Complaint</option>
+            <option value="Suggestion" th:selected="${feedback.feedbackType == 'Suggestion'}">Suggestion</option>
+            <option value="Praise" th:selected="${feedback.feedbackType == 'Praise'}">Praise</option>
+        </select>
+
+        <!-- Rating Input -->
+        <label for="rating">Rating (1 to 5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" th:value="${feedback.rating}" required />
+
+        <!-- Submit -->
+        <button type="submit">Update Feedback</button>
+    </form>
+
+    <!-- Navigation -->
+    <div class="back-link">
+        <a href="/user/viewmyfeedback">← Back to My Feedback</a>
+    </div>
+</body>
+</html>

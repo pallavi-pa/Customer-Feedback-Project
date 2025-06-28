@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Praise</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #dfe9f3, #ffffff);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px #ccc;
+        }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #6c5ce7;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        td {
+            color: #333;
+        }
+
+        .no-feedback {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            font-size: 18px;
+        }
+
+        .back-button {
+            display: block;
+            width: max-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #6c5ce7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #4e4cb3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>My Praise Feedback</h2>
+
+    <div th:if="${#lists.isEmpty(feedbackList)}" class="no-feedback">
+        You haven't submitted any praise feedback yet.
+    </div>
+
+    <table th:if="${!#lists.isEmpty(feedbackList)}">
+        <tr>
+            <th>Message</th>
+            <th>Rating</th>
+            <th>Admin Reply</th>
+        </tr>
+        <tr th:each="feedback : ${feedbackList}">
+            <td th:text="${feedback.message}"></td>
+            <td th:text="${feedback.rating}"></td>
+            <td th:text="${feedback.reply != null ? feedback.reply : 'No Reply Yet'}"></td>
+        </tr>
+    </table>
+
+    <a href="/user/dashboard" class="back-button">← Back to Dashboard</a>
+
+</body>
+</html>

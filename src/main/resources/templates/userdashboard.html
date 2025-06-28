@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #f1f1f1;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            width: 240px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #ff4757;
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 14px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to Your Dashboard</h2>
+    <p class="subtitle">Access your feedback, track responses, and manage everything easily.</p>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>Submit Feedback</h3>
+            <p>Share your thoughts, complaints, suggestions or praise.</p>
+            <a href="/user/feedback" class="btn">Submit</a>
+        </div>
+
+        <div class="card">
+            <h3>View All Feedback</h3>
+            <p>Check all the feedback you've submitted.</p>
+            <a href="/user/viewmyfeedback" class="btn">View</a>
+        </div>
+
+        <div class="card">
+            <h3>My Complaints</h3>
+            <p>View your complaints and admin replies.</p>
+            <a href="/user/viewcomplaints" class="btn">Check</a>
+        </div>
+
+        <div class="card">
+            <h3>My Suggestions</h3>
+            <p>Track your improvement suggestions and feedback.</p>
+            <a href="/user/viewsuggestions" class="btn">Explore</a>
+        </div>
+
+        <div class="card">
+            <h3>My Praise</h3>
+            <p>See all your positive feedbacks and praise.</p>
+            <a href="/user/viewpraising" class="btn">View</a>
+        </div>
+
+        <div class="card">
+            <h3>Logout</h3>
+            <p>End your session securely.</p>
+            <a href="/logout" class="btn">Logout</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Feedback Portal. All rights reserved.
+    </div>
+</div>
+</body>
+</html>

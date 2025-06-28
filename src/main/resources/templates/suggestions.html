@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Suggestions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #cdeff5, #e8f9fd);
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0b3c49;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px #b0dfe9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #00bcd4;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background-color: #f1fbfc;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 30px auto 0;
+            background-color: #007c91;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #005a66;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 70px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #0097a7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #007c91;
+        }
+
+        .reply-box {
+            margin-top: 10px;
+        }
+
+        .existing-reply {
+            background-color: #e0f7fa;
+            border-left: 4px solid #0097a7;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #004d57;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Suggestions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Message</th>
+                <th>Reply</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="feedback : ${feedbacks}">
+                <td th:text="${feedback.id}"></td>
+                <td th:text="${feedback.username}"></td>
+                <td th:text="${feedback.message}"></td>
+                <td>
+                    <!-- Existing reply -->
+                    <div th:if="${feedback.reply != null}">
+                        <div class="existing-reply" th:text="'Admin Reply: ' + ${feedback.reply}"></div>
+                    </div>
+
+                    <!-- Reply form -->
+                    <form th:action="@{/admin/reply}" method="post" class="reply-box">
+                        <input type="hidden" name="feedbackId" th:value="${feedback.id}" />
+                        <textarea name="reply" placeholder="Write your reply..." required></textarea>
+                        <button type="submit">Submit Reply</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="center">
+        <a href="/admin/dashboard" class="back-button">← Back to Admin Dashboard</a>
+    </div>
+</body>
+</html>
